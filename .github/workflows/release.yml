@@ -36,7 +36,7 @@ jobs:
               echo RUSTFLAGS="-C target-feature=-crt-static" >> $GITHUB_ENV
               ;;
             fedora*)
-              dnf install -y curl gcc openssl-devel pkg-config
+              dnf install -y curl gcc openssl-devel pkgconfig
               ;;
           esac
 
