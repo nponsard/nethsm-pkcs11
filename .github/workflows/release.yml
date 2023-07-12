@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.os }}
-      env:
-        HOME: /root
+
     strategy:
       matrix:
         os: ["ubuntu:22.04", "debian:12", "fedora:38", "alpine:3.18"]
@@ -20,6 +19,7 @@ jobs:
 
     env:
       FILE_NAME: ${{ matrix.os }}-${{ github.event.release.tag_name }}.so
+      HOME: /root
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,12 +31,11 @@ jobs:
               apt-get update
               apt-get install -y curl
               ;;
-       
+
             alpine*)
               apk add openssl-dev musl-dev
               ;;
           esac
-
 
       - name: Install Rust
         uses: actions-rs/toolchain@v1
