@@ -26,13 +26,17 @@ jobs:
 
       - name: install dependencies
         run: |
-          if [[ ${{ matrix.os }} == "alpine"*  ]]; then
-            apk add --no-cache musl-dev
-          fi
-          if [[ ${{ matrix.os }} == "debian"* || ${{ matrix.os }} == "ubuntu"* ]]; then
-            apt-get update
-            apt-get install -y wget
-          fi
+          case ${{matrix.os}} in 
+            ubuntu* | debian* )
+              apt-get update
+              apt-get install -y curl
+              ;;
+       
+            alpine*)
+              apk add openssl-dev musl-dev
+              ;;
+          esac
+
 
       - name: Install Rust
         uses: actions-rs/toolchain@v1
