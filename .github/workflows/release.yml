@@ -10,7 +10,7 @@ jobs:
   build-windows:
     runs-on: windows-latest
     env:
-      FILE_NAME: nethsm-pkcs11-windows-v${{ github.event.release.tag_name }}.dll
+      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-windows.dll
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          # toolchain: stable-x86_64-pc-windows-msvc
+          toolchain: stable-x86_64-pc-windows-msvc
 
       - name: Build project
         run: cargo build --release
@@ -32,11 +32,10 @@ jobs:
         with:
           files: ${{ env.FILE_NAME }}
 
-
   build-macos:
     runs-on: macos-latest
     env:
-      FILE_NAME: nethsm-pkcs11-macos-v${{ github.event.release.tag_name }}.dylib
+      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-macos.dylib
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -69,7 +68,7 @@ jobs:
         rust-version: [stable]
 
     env:
-      FILE_NAME: nethsm-pkcs11-${{ matrix.os }}-v${{ github.event.release.tag_name }}.so
+      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-${{ matrix.os }}.so
       HOME: /root
     steps:
       - name: Checkout code
@@ -99,8 +98,6 @@ jobs:
 
       - name: Build project
         run: cargo build --release
-        
-
 
       - name: rename file
         run: mv target/release/libnethsm_pkcs11.so ${{ env.FILE_NAME }}
