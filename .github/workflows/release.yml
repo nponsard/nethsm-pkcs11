@@ -35,4 +35,4 @@ jobs:
       - name: Upload to the release
         uses: softprops/action-gh-release@v1
         with:
-          file: ${{ env.FILE_NAME }}
+          files: ${{ env.FILE_NAME }}
