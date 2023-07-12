@@ -31,9 +31,9 @@ jobs:
               apt-get update
               apt-get install -y curl build-essential
               ;;
-
             alpine*)
               apk add openssl-dev musl-dev gcc 
+              echo RUSTFLAGS="-C target-feature=-crt-static" >> $GITHUB_ENV
               ;;
             fedora*)
               dnf install -y curl gcc openssl-devel
@@ -48,6 +48,9 @@ jobs:
 
       - name: Build project
         run: cargo build --release
+        
+
+
       - name: rename file
         run: mv target/release/libnethsm_pkcs11.so ${{ env.FILE_NAME }}
 
