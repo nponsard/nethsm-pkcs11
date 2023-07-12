@@ -19,7 +19,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable-x86_64-pc-windows-msvc
+          # toolchain: stable-x86_64-pc-windows-msvc
 
       - name: Build project
         run: cargo build --release
