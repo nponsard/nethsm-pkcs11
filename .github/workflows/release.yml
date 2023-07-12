@@ -29,14 +29,14 @@ jobs:
           case ${{matrix.os}} in 
             ubuntu* | debian* )
               apt-get update
-              apt-get install -y curl build-essential
+              apt-get install -y curl build-essential pkg-config
               ;;
             alpine*)
-              apk add openssl-dev musl-dev gcc 
+              apk add openssl-dev musl-dev gcc pkg-config
               echo RUSTFLAGS="-C target-feature=-crt-static" >> $GITHUB_ENV
               ;;
             fedora*)
-              dnf install -y curl gcc openssl-devel
+              dnf install -y curl gcc openssl-devel pkg-config
               ;;
           esac
 
