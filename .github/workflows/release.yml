@@ -29,11 +29,11 @@ jobs:
           case ${{matrix.os}} in 
             ubuntu* | debian* )
               apt-get update
-              apt-get install -y curl
+              apt-get install -y curl build-essential
               ;;
 
             alpine*)
-              apk add openssl-dev musl-dev
+              apk add openssl-dev musl-dev gcc 
               ;;
           esac
 
