@@ -35,6 +35,9 @@ jobs:
             alpine*)
               apk add openssl-dev musl-dev gcc 
               ;;
+            fedora*)
+              dnf install -y curl gcc openssl-devel
+              ;;
           esac
 
       - name: Install Rust
