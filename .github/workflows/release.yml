@@ -14,6 +14,8 @@ jobs:
         os: [ubuntu-latest, debian-latest, fedora-latest, alpine/latest]
         rust-version: [stable]
 
+    env: 
+      FILE_NAME: ${{ matrix.os }}-${{ github.event.release.tag_name }}.so
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,9 +28,11 @@ jobs:
 
       - name: Build project
         run: cargo build --release
+      - name: rename file
+        run: mv target/release/libnethsm_pkcs11.so ${{ env.FILE_NAME }}
+
 
       - name: Upload to the release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ matrix.os }}-${{ matrix.rust-version }}.so
-          path: target/release/libnethsm_pkcs11.so
+          file: ${{ env.FILE_NAME }}
