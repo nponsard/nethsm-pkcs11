@@ -164,14 +164,14 @@ jobs:
             esac
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
             . $HOME/.cargo/env
-            rustup target add $TARGET
+            rustup target add ${{ matrix.target }}
           run: |
-            cargo build --release --target $TARGET
-            mv target/$TARGET/release/libnethsm_pkcs11.so /artifacts/$FILE_NAME
+            cargo build --release --target ${{ matrix.target }}
+            mv target/${{ matrix.target }}/release/libnethsm_pkcs11.so /artifacts/${{env.FILE_NAME}}
             - name: Upload to the release
       - uses: softprops/action-gh-release@v1
         with:
-          files: ${{ env.FILE_NAME }}
+          files: artifacts/${{ env.FILE_NAME }}
 
   upload-licenses:
     runs-on: ubuntu-latest
