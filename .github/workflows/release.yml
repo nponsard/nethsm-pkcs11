@@ -10,7 +10,7 @@ jobs:
   build-windows:
     runs-on: windows-latest
     env:
-      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-windows.dll
+      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-x86_64-windows.dll
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
   build-macos:
     runs-on: macos-latest
     env:
-      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-macos.dylib
+      FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-x86_64-macos.dylib
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
