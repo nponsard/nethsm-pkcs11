@@ -128,9 +128,10 @@ jobs:
           - arch: aarch64
             distro: alpine_latest
             target: aarch64-unknown-linux-musl
-          - arch: riscv64
-            distro: ubuntu22.04
-            target: riscv64gc-unknown-linux-gnu
+          # Not supported by ring
+          # - arch: riscv64
+          #   distro: ubuntu22.04
+          #   target: riscv64gc-unknown-linux-gnu
     env:
       FILE_NAME: nethsm-pkcs11-v${{ github.event.release.tag_name }}-${{ matrix.arch }}-${{ matrix.distro }}.so
 
