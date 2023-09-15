@@ -170,7 +170,6 @@ jobs:
             . $HOME/.cargo/env
             cargo build --release --target ${{ matrix.target }}
             mv target/${{ matrix.target }}/release/libnethsm_pkcs11.so /artifacts/${{env.FILE_NAME}}
-            - name: Upload to the release
       - uses: softprops/action-gh-release@v1
         with:
           files: artifacts/${{ env.FILE_NAME }}
