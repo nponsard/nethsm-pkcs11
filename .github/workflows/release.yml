@@ -148,9 +148,9 @@ jobs:
           dockerRunArgs: |
             --volume "${PWD}/artifacts:/artifacts"
           env: |
-            FILE_NAME="${{env.FILE_NAME}}"
-            TARGET="${{ matrix.target }}"
-            RUSTFLAGS="-C target-feature=-crt-static"
+            FILE_NAME: "${{env.FILE_NAME}}"
+            TARGET: "${{ matrix.target }}"
+            RUSTFLAGS: "-C target-feature=-crt-static"
           shell: /bin/sh
           install: |
             case ${{matrix.distro}} in 
