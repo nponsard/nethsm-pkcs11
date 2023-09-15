@@ -166,6 +166,7 @@ jobs:
             . $HOME/.cargo/env
             rustup target add ${{ matrix.target }}
           run: |
+            . $HOME/.cargo/env
             cargo build --release --target ${{ matrix.target }}
             mv target/${{ matrix.target }}/release/libnethsm_pkcs11.so /artifacts/${{env.FILE_NAME}}
             - name: Upload to the release
