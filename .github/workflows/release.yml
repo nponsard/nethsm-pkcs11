@@ -161,7 +161,7 @@ jobs:
               alpine*)
                 apk add curl musl-dev gcc 
                 ;;
-            esa
+            esac
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
             . $HOME/.cargo/env
             rustup target add $TARGET
