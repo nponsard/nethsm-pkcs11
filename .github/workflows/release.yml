@@ -128,7 +128,7 @@ jobs:
           - arch: aarch64
             distro: alpine_latest
             target: aarch64-unknown-linux-musl
-          - arch: riscv
+          - arch: riscv64
             distro: ubuntu22.04
             target: riscv64gc-unknown-linux-gnu
     env:
